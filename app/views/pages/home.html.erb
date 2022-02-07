@@ -1,0 +1,9 @@
+<h1>Homepage</h1>
+<p>Find me in app/views/pages/home.html.erb</p>
+<table>
+  <tbody>
+    <% @pages.each do |page| %>
+      <td><%= page.title %></td>
+    <% end %>
+  </tbody>
+</table>
