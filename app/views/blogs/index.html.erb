@@ -13,11 +13,6 @@
     <% @blogs.each do |blog| %>
       <tr>
         <td><%= blog.title %></td>
-        <%
-=begin%>
- <td><%= blog.body %></td> 
-<%
-=end%>
         <td><%= link_to 'Show', blog %></td>
         <td><%= link_to 'Edit', edit_blog_path(blog)%></td>
         <td><%= link_to 'Delete', blog, method: :delete %></td>
@@ -25,17 +20,4 @@
     <% end %>
   </tbody>
 </table>
-<%
-=begin%>
- 
-<div id="blogs">
-  <% @blogs.each do |blog| %>
-    <%= render blog %>
-    <p>
-      <%= link_to "Show this blog", blog %>
-    </p>
-  <% end %>
-</div> 
-<%
-=end%>
 <%= link_to "New blog", new_blog_path %>
