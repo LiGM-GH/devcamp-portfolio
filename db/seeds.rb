@@ -1,12 +1,14 @@
 10.times do |blog|
   Blog.create!(
     title: "my_blog_#{blog}",
-    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '\
-    'Cras velit arcu, faucibus eget metus eu, eleifend volutpat purus. '\
-    'Maecenas at nulla sed mauris porttitor vulputate. '\
-    'Aenean et neque ut eros efficitur pulvinar at et massa. '\
-    'Fusce non aliquet lectus. '\
-    'In porttitor massa at dui ultricies pulvinar. Aenean id nunc ex. '
+    body: <<~BODY
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Cras velit arcu, faucibus eget metus eu, eleifend volutpat purus.
+      Maecenas at nulla sed mauris porttitor vulputate.
+      Aenean et neque ut eros efficitur pulvinar at et massa.
+      Fusce non aliquet lectus.
+      In porttitor massa at dui ultricies pulvinar. Aenean id nunc ex.
+    BODY
   )
 end
 
@@ -32,7 +34,7 @@ puts '5 skills created'
       'Fusce non aliquet lectus. '\
       'In porttitor massa at dui ultricies pulvinar. Aenean id nunc ex. ',
     main_image: 'https://dummyimage.com/1040x740/fff/aaa',
-    thumb_image: 'https://dummyimage.com/640x360/fff/aaa'
+    thumb_image: 'https://dummyimage.com/350x200/fff/aaa'
   )
 end
 
