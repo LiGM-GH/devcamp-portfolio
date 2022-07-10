@@ -11,6 +11,10 @@
   </head>
 
   <body>
+    <% if flash.any? %>
+      <%= flash.to_hash.values.join("\n") %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
