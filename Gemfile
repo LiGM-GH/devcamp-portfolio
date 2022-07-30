@@ -65,4 +65,5 @@ group :development do
   gem 'solargraph'
 end
 
+gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'rspec'
