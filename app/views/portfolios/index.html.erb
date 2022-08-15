@@ -1,0 +1,14 @@
+<h1>Portfolio Items</h1>
+
+<%= link_to 'Create New Item', new_portfolio_path %>
+<div>
+  <% @portfolio_items.each do |item| %>
+    <h2> <%= link_to item.title, portfolio_show_path(item) %> </h2>
+    <h3> <%= item.subtitle %> </h3>
+    <h3>Body:</h3>
+    <p> <%= item.body %> </p>
+    <p> <%= image_tag item.thumb_image unless item.thumb_image.nil? %> </p>
+    <p> <%= link_to "Edit", edit_portfolio_path(item) %> </p>
+    <p> <%= link_to "Delete", portfolio_path(item), data: { turbo_confirm: "Are you sure?", turbo_method: "delete" } %> </p>
+  <% end %>
+</div>
