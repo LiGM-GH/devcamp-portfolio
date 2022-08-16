@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # model for /blogs
 class Blog < ApplicationRecord
@@ -6,4 +8,6 @@ class Blog < ApplicationRecord
   extend FriendlyId
 
   friendly_id :title, use: :slugged
+
+  validates_presence_of :title, :body
 end
