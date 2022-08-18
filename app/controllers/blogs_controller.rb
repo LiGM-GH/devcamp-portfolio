@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # Regulates actions for route /blogs
 #

@@ -1,6 +1,14 @@
+# frozen_string_literal: true
+
+##
+# DB entry point for Portfolios
 class PortfoliosController < ApplicationController
   def index
     @portfolio_items = Portfolio.all
+  end
+
+  def angular
+    @angular = Portfolio.angular
   end
 
   def new
@@ -44,7 +52,10 @@ class PortfoliosController < ApplicationController
     @portfolio_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to portfolios_path, notice: 'Record was successfully destroyed.' }
+      format.html do
+        redirect_to portfolios_path,
+                    notice: 'Record was successfully destroyed.'
+      end
     end
   end
 end
