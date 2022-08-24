@@ -13,11 +13,17 @@ class PortfoliosController < ApplicationController
 
   def new
     @portfolio_item = Portfolio.new
+
+    3.times { @portfolio_item.technologies.build }
   end
 
   def create
-    puts "Params[portfolio]: #{params[:portfolio]}"
-    @portfolio_item = Portfolio.new(params[:portfolio].permit(:title, :subtitle, :body))
+    # puts "Params[portfolio]: #{params[:portfolio]}"
+    @portfolio_item = Portfolio.new(
+      params[:portfolio]
+      .permit(:title, :subtitle, :body, technologies_attribute: [:name])
+    )
+
     if @portfolio_item.save
       redirect_to portfolios_path, notice: 'Portfolio successfully created'
     else
@@ -34,7 +40,7 @@ class PortfoliosController < ApplicationController
 
     respond_to do |format|
       if @portfolio_item.update(params.require(:portfolio).permit(:title, :subtitle, :body))
-        format.html { uedirect_to portfolios_path, notice: 'Record was successfully updated.' }
+        format.html { redirect_to portfolios_path, notice: 'Record was successfully updated.' }
         format.json { render :show, status: :ok, location: @blog }
       else
         format.html { render :edit, status: :unprocessable_entity }
