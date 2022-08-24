@@ -1,15 +1,29 @@
+# frozen_string_literal: true
+
+##
+# DB entry point for Portfolios
 class PortfoliosController < ApplicationController
   def index
     @portfolio_items = Portfolio.all
   end
 
+  def angular
+    @angular = Portfolio.angular
+  end
+
   def new
     @portfolio_item = Portfolio.new
+
+    3.times { @portfolio_item.technologies.build }
   end
 
   def create
-    puts "Params[portfolio]: #{params[:portfolio]}"
-    @portfolio_item = Portfolio.new(params[:portfolio].permit(:title, :subtitle, :body))
+    # puts "Params[portfolio]: #{params[:portfolio]}"
+    @portfolio_item = Portfolio.new(
+      params[:portfolio]
+      .permit(:title, :subtitle, :body, technologies_attribute: [:name])
+    )
+
     if @portfolio_item.save
       redirect_to portfolios_path, notice: 'Portfolio successfully created'
     else
@@ -44,7 +58,10 @@ class PortfoliosController < ApplicationController
     @portfolio_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to portfolios_path, notice: 'Record was successfully destroyed.' }
+      format.html do
+        redirect_to portfolios_path,
+                    notice: 'Record was successfully destroyed.'
+      end
     end
   end
 end
